@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action ="@{/ingresarContribuyente}" th:object="${contribuyente}" method ="post">
+	
+		<label>Nombre: </label>
+		<input type ="text" th:field="*{s_nombre}"><br>
+		<span th:errors="*{s_nombre}" style="color:#E81505"></span><br>
+		
+		<label>Apellido: </label>
+		<input type ="text" th:field="*{s_apellido}"><br>
+		<span th:errors="*{s_apellido}" style="color:#E81505"></span><br>
+		
+		<label>NIT: </label>
+		<input type ="text" th:field="*{s_nit}"><br>
+		<span th:errors="*{s_nit}" style="color:#E81505"></span><br>
+		
+		<label>Importancia: </label>
+		<select th:field ="*{importancia.c_importancia}">
+			<option th:each=" e : ${importancias}" th:value="${e.c_importancia}" th:text="${e.s_importancia}"></option>
+		</select>
+		<br>
+		<input type="submit" value="Guardar">	
+	</form>
+	<br>
+	<form th:action="@{/mostrarContribuyentes}" method="post">
+		<input type="submit" value="Ver Contribuyentes">
+	</form>
+</body>
+</html>
